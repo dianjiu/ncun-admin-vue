@@ -61,6 +61,7 @@ yarn run serve
 
 // 执行构建命令，生成的dist文件夹放在服务器下即可访问
 yarn run build
+
 ```
 
 
