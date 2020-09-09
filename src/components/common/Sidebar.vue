@@ -58,15 +58,44 @@ export default {
             items: [
                 {
                     icon: 'el-icon-lx-home',
-                    index: 'dashboard',
+                    index: 'home',
                     title: '系统首页'
                 },
                 {
                     icon: 'el-icon-lx-cascades',
-                    index: 'table',
-                    title: '基础表格'
+                    index: 'pushBlog',
+                    title: '发布博客'
                 },
                 {
+                    icon: 'el-icon-lx-calendar',
+                    index: '3',
+                    title: '博客管理',
+                    subs: [
+                        {
+                            index: 'blogManage',
+                            title: '博客管理'
+                        },
+                        {
+                            index: '3-2',
+                            title: '三级菜单',
+                            subs: [
+                                {
+                                    index: 'editor',
+                                    title: '富文本编辑器'
+                                },
+                                {
+                                    index: 'markdown',
+                                    title: 'markdown编辑器'
+                                }
+                            ]
+                        },
+                        {
+                            index: 'upload',
+                            title: '文件上传'
+                        }
+                    ]
+                },
+                /*{
                     icon: 'el-icon-lx-copy',
                     index: 'tabs',
                     title: 'tab选项卡'
@@ -149,7 +178,7 @@ export default {
                     icon: 'el-icon-lx-redpacket_fill',
                     index: '/donate',
                     title: '支持作者'
-                }
+                }*/
             ]
         };
     },
