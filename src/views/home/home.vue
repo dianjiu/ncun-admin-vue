@@ -174,21 +174,21 @@ export default {
             options: {
                 type: 'bar',
                 title: {
-                    text: '最近一周各品类销售图'
+                    text: '最近一周搜索引擎索引图'
                 },
                 xRorate: 25,
                 labels: ['周一', '周二', '周三', '周四', '周五'],
                 datasets: [
                     {
-                        label: '家电',
+                        label: '百度',
                         data: [234, 278, 270, 190, 230]
                     },
                     {
-                        label: '百货',
+                        label: '谷歌',
                         data: [164, 178, 190, 135, 160]
                     },
                     {
-                        label: '食品',
+                        label: '必应',
                         data: [144, 198, 150, 235, 120]
                     }
                 ]
@@ -196,21 +196,21 @@ export default {
             options2: {
                 type: 'line',
                 title: {
-                    text: '最近几个月各品类销售趋势图'
+                    text: '近半年博客数据趋势图'
                 },
-                labels: ['6月', '7月', '8月', '9月', '10月'],
+                labels: ['7月', '8月', '9月', '10月' , '11月', '12月'],
                 datasets: [
                     {
-                        label: '家电',
-                        data: [234, 278, 270, 190, 230]
+                        label: '访客',
+                        data: [234, 278, 270, 190, 230, 300]
                     },
                     {
-                        label: '百货',
-                        data: [164, 178, 150, 135, 160]
+                        label: '评论',
+                        data: [16, 17, 15, 13, 16, 51]
                     },
                     {
-                        label: '食品',
-                        data: [74, 118, 200, 235, 90]
+                        label: '转发',
+                        data: [7, 11, 20, 23, 9, 30]
                     }
                 ]
             }
@@ -360,6 +360,9 @@ export default {
 
 .todo-item {
     font-size: 14px;
+}
+.todo-item a {
+    color: #000000;
 }
 
 .todo-item-del {

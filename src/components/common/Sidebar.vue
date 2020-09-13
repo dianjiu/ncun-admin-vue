@@ -63,38 +63,133 @@ export default {
                 },
                 {
                     icon: 'el-icon-lx-cascades',
-                    index: 'pushBlog',
+                    index: 'blogAdd',
                     title: '发布博客'
                 },
                 {
                     icon: 'el-icon-lx-calendar',
-                    index: '3',
+                    index: 'blogManage',
                     title: '博客管理',
                     subs: [
                         {
-                            index: 'blogManage',
+                            index: 'blogList',
                             title: '博客管理'
                         },
                         {
-                            index: '3-2',
-                            title: '三级菜单',
-                            subs: [
-                                {
-                                    index: 'editor',
-                                    title: '富文本编辑器'
-                                },
-                                {
-                                    index: 'markdown',
-                                    title: 'markdown编辑器'
-                                }
-                            ]
+                            index: 'sortList',
+                            title: '分类管理'
                         },
                         {
-                            index: 'upload',
-                            title: '文件上传'
+                            index: 'tagList',
+                            title: '标签管理'
+                        },
+                        {
+                            index: 'topicList',
+                            title: '专题管理'
+                        },
+                        {
+                            index: 'commentList',
+                            title: '评论列表'
                         }
                     ]
                 },
+                {
+                    icon: 'el-icon-lx-calendar',
+                    index: 'themeManage',
+                    title: '主题管理',
+                    subs: [
+                        {
+                            index: 'localTheme',
+                            title: '本地主题'
+                        },
+                        {
+                            index: 'themeStore',
+                            title: '主题商店'
+                        },
+                        {
+                            index: 'TopMenu',
+                            title: '导航管理'
+                        },
+                        {
+                            index: 'leftMenu',
+                            title: '侧边管理'
+                        }
+                    ]
+                },
+                {
+                    icon: 'el-icon-lx-calendar',
+                    index: 'pluginManage',
+                    title: '插件管理',
+                    subs: [
+                        {
+                            index: 'localPlugin',
+                            title: '本地插件'
+                        },
+                        {
+                            index: 'pluginStore',
+                            title: '插件商店'
+                        }
+                    ]
+                },
+                {
+                    icon: 'el-icon-lx-calendar',
+                    index: 'authManage',
+                    title: '权限管理',
+                    subs: [
+                        {
+                            index: 'userManage',
+                            title: '用户管理'
+                        },
+                        {
+                            index: 'roleManage',
+                            title: '角色管理'
+                        },
+                        {
+                            index: 'menuManage',
+                            title: '菜单管理'
+                        },
+                        {
+                            index: 'buttonManage',
+                            title: '按钮管理'
+                        }
+                    ]
+                },
+                {
+                    icon: 'el-icon-lx-calendar',
+                    index: 'systemManage',
+                    title: '系统管理',
+                    subs: [
+                        {
+                            index: 'webConfig',
+                            title: '网站配置'
+                        },
+                        {
+                            index: 'sysConfig',
+                            title: '系统设置'
+                        },
+                        {
+                            index: 'paramConfig',
+                            title: '参数配置'
+                        },
+                        {
+                            index: 'linkConfig',
+                            title: '友链管理'
+                        },
+                        {
+                            index: 'fileManage',
+                            title: '附件管理'
+                        },
+                        {
+                            index: 'aboutMe',
+                            title: '关于博主'
+                        }
+                    ]
+                },
+                {
+                    icon: 'el-icon-lx-cascades',
+                    index: 'aboutNcun',
+                    title: '关于诺春'
+                }
                 /*{
                     icon: 'el-icon-lx-copy',
                     index: 'tabs',

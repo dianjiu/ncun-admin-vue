@@ -20,7 +20,7 @@ export default new Router({
                     meta: { title: '系统首页' }
                 },
                 {
-                    path: '/blogManage',
+                    path: '/blogList',
                     component: () => import(/* webpackChunkName: "home" */ '../views/blog/list.vue'),
                     meta: { title: '博客管理' }
                 },
@@ -28,6 +28,11 @@ export default new Router({
                     path: '/blogEdit',
                     component: () => import(/* webpackChunkName: "home" */ '../views/blog/edit.vue'),
                     meta: { title: '博客编辑' }
+                },
+                {
+                    path: '/blogAdd',
+                    component: () => import(/* webpackChunkName: "home" */ '../views/blog/edit.vue'),
+                    meta: { title: '新增博客' }
                 },
                 /*{
                     path: '/icon',

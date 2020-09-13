@@ -1,12 +1,12 @@
 <template>
     <div>
-        <div class="crumbs">
+        <!--<div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item>
-                    <i class="el-icon-lx-cascades"></i> 基础表格
+                    &lt;!&ndash;<i class="el-icon-lx-cascades"></i>&ndash;&gt; 基础管理 / 博客管理
                 </el-breadcrumb-item>
             </el-breadcrumb>
-        </div>
+        </div>-->
         <div class="container">
             <div class="handle-box">
                 <el-button
@@ -14,12 +14,22 @@
                     icon="el-icon-delete"
                     class="handle-del mr10"
                     @click="delAllSelection"
-                >批量删除</el-button>
-                <el-select v-model="query.address" placeholder="地址" class="handle-select mr10">
-                    <el-option key="1" label="广东省" value="广东省"></el-option>
-                    <el-option key="2" label="湖南省" value="湖南省"></el-option>
+                >批量下架</el-button>
+                <el-select v-model="query.articleType" placeholder="是否原创" class="handle-select mr10">
+                    <el-option key="1" label="原创" value="原创"></el-option>
+                    <el-option key="2" label="转载" value="转载"></el-option>
                 </el-select>
-                <el-input v-model="query.name" placeholder="用户名" class="handle-input mr10"></el-input>
+                <el-select v-model="query.articleGrade" placeholder="推荐等级" class="handle-select mr10">
+                    <el-option key="1" label="正常" value="正常"></el-option>
+                    <el-option key="2" label="推荐" value="推荐"></el-option>
+                    <el-option key="3" label="置顶" value="置顶"></el-option>
+                </el-select>
+                <el-select v-model="query.status" placeholder="是否发布" class="handle-select mr10">
+                    <el-option key="1" label="发布" value="发布"></el-option>
+                    <el-option key="2" label="下架" value="下架"></el-option>
+                </el-select>
+                <el-input v-model="query.articleTitle" placeholder="标题、内容" class="handle-input mr10"></el-input>
+                <el-input v-model="query.articleCategories" placeholder="分类、标签、专题" class="handle-input mr10"></el-input>
                 <el-button type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
             </div>
             <el-table
@@ -32,30 +42,32 @@
             >
                 <el-table-column type="selection" width="55" align="center"></el-table-column>
                 <el-table-column prop="id" label="ID" width="55" align="center"></el-table-column>
-                <el-table-column prop="name" label="用户名"></el-table-column>
-                <el-table-column label="账户余额">
-                    <template slot-scope="scope">￥{{scope.row.money}}</template>
-                </el-table-column>
-                <el-table-column label="头像(查看大图)" align="center">
+                <el-table-column label="缩略图" align="center">
                     <template slot-scope="scope">
                         <el-image
                             class="table-td-thumb"
-                            :src="scope.row.thumb"
-                            :preview-src-list="[scope.row.thumb]"
+                            :src="scope.row.articleImgs"
+                            :preview-src-list="[scope.row.articleImgs]"
                         ></el-image>
                     </template>
                 </el-table-column>
-                <el-table-column prop="address" label="地址"></el-table-column>
-                <el-table-column label="状态" align="center">
+                <el-table-column prop="articleTitle" min-width="150" label="标题"></el-table-column>
+                <el-table-column prop="articleAuthor" width="70" label="作者"></el-table-column>
+                <el-table-column width="70" label="状态" align="center">
                     <template slot-scope="scope">
                         <el-tag
-                            :type="scope.row.state==='成功'?'success':(scope.row.state==='失败'?'danger':'')"
-                        >{{scope.row.state}}</el-tag>
+                            :type="scope.row.status==='1'?'success':(scope.row.status==='0'?'danger':'')"
+                        >{{scope.row.status==='1'?'发布':(scope.row.status==='0'?'下架':'')}}</el-tag>
                     </template>
                 </el-table-column>
-
-                <el-table-column prop="date" label="注册时间"></el-table-column>
-                <el-table-column label="操作" width="180" align="center">
+                <el-table-column width="70" label="点赞">
+                    <template slot-scope="scope">{{scope.row.articleLikes}}</template>
+                </el-table-column>
+                <el-table-column width="70" label="浏览">
+                    <template slot-scope="scope">{{scope.row.articleViews}}</template>
+                </el-table-column>
+                <el-table-column width="100" prop="createTime" label="发布日期"></el-table-column>
+                <el-table-column label="操作" width="120" align="center">
                     <template slot-scope="scope">
                         <el-button
                             type="text"
@@ -102,14 +114,20 @@
 </template>
 
 <script>
-import { fetchData } from '../../api/index';
+import { queryList } from '@/api/blog';
 export default {
-    name: 'basetable',
+    // name: 'basetable',
     data() {
         return {
             query: {
-                address: '',
-                name: '',
+                articleType: '',
+                articleGrade: '',
+                status: '',
+                articleTitle: '',
+                articleText: '',
+                articleCategories: '',
+                articleLabel: '',
+                articleSpecial: '',
                 pageIndex: 1,
                 pageSize: 10
             },
@@ -129,9 +147,9 @@ export default {
     methods: {
         // 获取 easy-mock 的模拟数据
         getData() {
-            fetchData(this.query).then(res => {
+            queryList(this.query).then(res => {
                 console.log(res);
-                this.tableData = res.list;
+                this.tableData = res.data;
                 this.pageTotal = res.pageTotal || 50;
             });
         },
@@ -194,11 +212,11 @@ export default {
 }
 
 .handle-select {
-    width: 120px;
+    width: 100px;
 }
 
 .handle-input {
-    width: 300px;
+    width: 200px;
     display: inline-block;
 }
 .table {

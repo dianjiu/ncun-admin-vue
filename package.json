@@ -1,6 +1,6 @@
 {
-  "name": "vue-manage-system",
-  "version": "4.2.0",
+  "name": "nucn-admin-vue",
+  "version": "1.2.1",
   "private": true,
   "scripts": {
     "dev": "npm run serve",
