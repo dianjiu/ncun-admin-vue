@@ -16,17 +16,17 @@
                     @click="delAllSelection"
                 >批量下架</el-button>
                 <el-select v-model="query.articleType" placeholder="是否原创" class="handle-select mr10">
-                    <el-option key="1" label="原创" value="原创"></el-option>
-                    <el-option key="2" label="转载" value="转载"></el-option>
+                    <el-option key="1" label="原创" value="1"></el-option>
+                    <el-option key="2" label="转载" value="0"></el-option>
                 </el-select>
                 <el-select v-model="query.articleGrade" placeholder="推荐等级" class="handle-select mr10">
-                    <el-option key="1" label="正常" value="正常"></el-option>
-                    <el-option key="2" label="推荐" value="推荐"></el-option>
-                    <el-option key="3" label="置顶" value="置顶"></el-option>
+                    <el-option key="1" label="正常" value="1"></el-option>
+                    <el-option key="2" label="推荐" value="6"></el-option>
+                    <el-option key="3" label="置顶" value="10"></el-option>
                 </el-select>
                 <el-select v-model="query.status" placeholder="是否发布" class="handle-select mr10">
-                    <el-option key="1" label="发布" value="发布"></el-option>
-                    <el-option key="2" label="下架" value="下架"></el-option>
+                    <el-option key="1" label="发布" value="1"></el-option>
+                    <el-option key="2" label="下架" value="0"></el-option>
                 </el-select>
                 <el-input v-model="query.articleTitle" placeholder="标题、内容" class="handle-input mr10"></el-input>
                 <el-input v-model="query.articleCategories" placeholder="分类、标签、专题" class="handle-input mr10"></el-input>
@@ -87,8 +87,8 @@
                 <el-pagination
                     background
                     layout="total, prev, pager, next"
-                    :current-page="query.pageIndex"
-                    :page-size="query.pageSize"
+                    :current-page="pageObj.pageIndex"
+                    :page-size="pageObj.pageSize"
                     :total="pageTotal"
                     @current-change="handlePageChange"
                 ></el-pagination>
@@ -120,16 +120,17 @@ export default {
     data() {
         return {
             query: {
-                articleType: '',
-                articleGrade: '',
-                status: '',
-                articleTitle: '',
-                articleText: '',
-                articleCategories: '',
-                articleLabel: '',
-                articleSpecial: '',
-                pageIndex: 1,
-                pageSize: 10
+                articleType: null,
+                articleGrade: null,
+                status: null,
+                articleTitle: null,
+                articleText: null,
+                articleCategories: null,
+                articleLabel: null,
+                articleSpecial: null
+            },
+            pageObj:{
+                pageSize: 2
             },
             tableData: [],
             multipleSelection: [],
@@ -147,15 +148,15 @@ export default {
     methods: {
         // 获取 easy-mock 的模拟数据
         getData() {
-            queryList(this.query).then(res => {
+            queryList({data:{...this.query},...this.pageObj}).then(res => {
                 console.log(res);
-                this.tableData = res.data;
-                this.pageTotal = res.pageTotal || 50;
+                this.tableData = res.data.data;
+                this.pageTotal = res.data.total || 50;
             });
         },
         // 触发搜索按钮
         handleSearch() {
-            this.$set(this.query, 'pageIndex', 1);
+            this.$set(this.pageObj, 'pageNum', 1);
             this.getData();
         },
         // 删除操作
@@ -199,7 +200,7 @@ export default {
         },
         // 分页导航
         handlePageChange(val) {
-            this.$set(this.query, 'pageIndex', val);
+            this.$set(this.pageObj, 'pageNum', val);
             this.getData();
         }
     }

@@ -3,7 +3,7 @@ import request from '../utils/request';
 //查询文章列表
 export const queryList = data => {
     return request({
-        url: '/tBlog/list',
+        url: '/tBlog/listByPage',
         method: 'post',
         data
     });

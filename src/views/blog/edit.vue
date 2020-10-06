@@ -15,7 +15,7 @@
                             <el-option label="推荐" value="6"></el-option>
                             <el-option label="正常" value="0"></el-option>
                         </el-select>
-                    </el-form-item>
+                    </el-form-item><br>
                     <el-form-item label="开启评论" prop="commentStatus" class="dj-form-inline">
                         <el-select v-model="blogForm.commentStatus" placeholder="请选择推荐等级">
                             <el-option label="开启" value="1"></el-option>
@@ -24,7 +24,7 @@
                     </el-form-item>
                     <el-form-item label="同步社区" prop="delivery" class="dj-form-inline">
                         <el-switch v-model="blogForm.toEmen"></el-switch>
-                    </el-form-item>
+                    </el-form-item><br>
                     <el-form-item label="文章专题" prop="articleSpecial" class="dj-form-inline">
                         <el-select
                             v-model="blogForm.articleSpecial"
@@ -56,7 +56,7 @@
                                 :value="item.value">
                             </el-option>
                         </el-select>
-                    </el-form-item>
+                    </el-form-item><br>
                     <el-form-item label="文章标签" prop="articleLabel" class="dj-form-inline">
                         <el-select
                             v-model="blogForm.articleLabel"
@@ -281,9 +281,9 @@ export default {
     display: inline-block;
 }
 
-.dj-form-inline input {
+/*.dj-form-inline input {
     width: 150px;
-}
+}*/
 
 .avatar-uploader .el-upload {
     border: 1px dashed #d9d9d9;
